@@ -10,12 +10,20 @@ export default function App() {
       return [...currentGoals,{text:goalsList, id:Math.random().toString()}];
     });
   };
+
+  const DeleteItemHandler =(id)=>{
+    setGoals((currentGoals)=>{
+      return currentGoals.filter((goal)=>{
+        return goal.id !== id;
+      });
+    });
+  };
   return (
     <View style={styles.appContainer}>
       <GoalInput addGoalHandler={addGoalHandler}/>
       <View style={styles.goalsList}>
         <FlatList data={goals} renderItem={(itemData)=>{
-          return (<GoalItem text={itemData.item.text} />);
+          return (<GoalItem text={itemData.item.text}  onDeleteItem={DeleteItemHandler} id={itemData.item.id}/>);
         }} keyExtractor={(item,index)=>{
           return item.id;
         }}>
