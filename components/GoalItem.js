@@ -4,11 +4,13 @@ const GoalItem =(props)=>{
     props.onDeleteItem(props.id);
   };
   return(
-    <Pressable onPress={DeleteItemHandler}>
-      <View style={styles.goalItem}>
+    <View style={styles.goalItem}>
+      <Pressable android_ripple ={{color:"#210644"}}onPress={DeleteItemHandler} style={({pressed})=>{
+        return pressed && styles.pressedItem  // for IOS
+      }}>
           <Text style={styles.goalText}>{props.text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 
@@ -22,10 +24,13 @@ const styles = StyleSheet.create({
         borderLeftWidth:1,
         borderTopWidth:1,
         backgroundColor:"#5e0acc",
-        padding:10,
         margin:7,
-      },
-      goalText:{
-        color:'white'
-      }
+    },
+    pressedItem:{
+      opacity:0.5,
+    }, // for IOS
+    goalText:{
+      padding:10,
+      color:'white'
+    }
 });
