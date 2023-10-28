@@ -10,6 +10,7 @@ export default function App() {
   function startAddGoalHandler(){
     setModalIsVisible(true);
   }
+
   const addGoalHandler =(goalsList)=>{
     setGoals((currentGoals)=>{
       return [...currentGoals,{text:goalsList, id:Math.random().toString()}];
